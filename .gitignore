@@ -1,4 +1,2 @@
 node_modules/
-.env.example
-MONGO_URL=mongodb-MONGO_URL
-
+.env
