@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route,Navigate} from "react-router-dom"
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
@@ -16,7 +16,7 @@ const App = () => {
     console.log({authUser});
     if(isCheckingAuth && !authUser) return (
       <div className='flex items-center justify-center h-screen'>
-            <Loader className="size-10" animate-spin/> 
+            <Loader className="size-10 animate-spin"/> 
       </div>
     )
   return ( 
