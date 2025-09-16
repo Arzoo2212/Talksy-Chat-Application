@@ -16,4 +16,7 @@ import { axiosInstance } from "../lib/axios"
          set({isCheckingAuth:false});
       }
    },
+   signup:async(data)=>{
+
+   }
  }));
