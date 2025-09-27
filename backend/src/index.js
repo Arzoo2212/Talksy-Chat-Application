@@ -13,37 +13,29 @@ dotenv.config();
 
 // PORT
 const PORT = process.env.PORT || 5001;
-
+const __dirname=path.resolve();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 
 // Dev CORS only
-if (process.env.NODE_ENV !== "production") {
+
   app.use(
     cors({
       origin: "http://localhost:5173",
       credentials: true,
     })
   );
-}
+
 
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// Serve React in production
-if (process.env.NODE_ENV === "production") {
-  // Windows-friendly absolute path to frontend/dist
-  const frontendDistPath = path.resolve("../frontend/dist");
-  console.log("Frontend dist path:", frontendDistPath);
-
-  // Serve static files
-  app.use(express.static(frontendDistPath));
-
-  // Serve index.html for all other routes
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendDistPath, "index.html"));
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static(path.join(__dirname,"../frontend/dist")));
+  app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
   });
 }
 
